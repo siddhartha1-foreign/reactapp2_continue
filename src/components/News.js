@@ -32,7 +32,13 @@ export class News extends Component {
        loading: false
     }
   }
+//runs after render
+  componentDidMount()
+  {
+    console.log("cdm");
+  }
   render() {
+    console.log("render");
     return (
       <div className="container my-3">
         <h2>NewsMonkey - Top Headlines</h2>
