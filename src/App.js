@@ -10,8 +10,8 @@ export default class App extends Component {
     return (
       <div>
         <NavBar />
-        <News />
-        <h1>Hello, {this.c}</h1>
+        <News pageSize={5}  category="science" />
+        {/* <h1>Hello, {this.c}</h1> */}
       </div>
     );
   }
