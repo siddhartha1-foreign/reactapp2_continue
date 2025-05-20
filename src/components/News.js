@@ -83,23 +83,27 @@ export class News extends Component {
   }
 
   async updateNews() {
+    this.props.setProgress(10);
     this.setState({ loading: true });
 
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b5e12497ba604abfbb9f618caa1f68f1&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
 
     try {
       const data = await fetch(url);
+      this.props.setProgress(30);
       const parsedData = await data.json();
-
+      this.props.setProgress(70);
       this.setState({
         articles: parsedData.articles,
         totalResults: parsedData.totalResults,
         loading: false,
       });
+      this.props.setProgress(100);
     } catch (error) {
       console.error("Error fetching news:", error);
       this.setState({ loading: false });
     }
+    this.props.setProgress(100);
   }
 
   handlePrevClick = async () => {
@@ -119,10 +123,9 @@ export class News extends Component {
   fetchMoreData = async () => {
     const nextPage = this.state.page + 1;
 
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b5e12497ba604abfbb9f618caa1f68f1&page=${nextPage}&pageSize=${this.props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${nextPage}&pageSize=${this.props.pageSize}`;
 
     // this.setState({ loading: true });
-
     try {
       const data = await fetch(url);
       const parsedData = await data.json();
@@ -133,6 +136,14 @@ export class News extends Component {
         page: nextPage,
         loading: false,
       });
+      // console.log(parsedData.articles);
+      // alert(parsedData.articles);
+      // alert(parsedData.articles.length + "----")
+      // if(parsedData.articles.length === 0)
+      // {
+      //    this.setState({ loading: false });
+      // }
+      
     } catch (error) {
       console.error("Error loading more data:", error);
       this.setState({ loading: false });
