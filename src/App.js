@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { Component } from "react";
+import React, { useState } from "react";
 import News from "./components/News";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -7,6 +7,8 @@ import LoadingBar from "react-top-loading-bar";
 
 export default class App extends Component {
   pageSize = 15;
+  const [country, setCountry] = useState('us');
+  
   apiKey=process.env.REACT_APP_NEWS_API
   state = {
     progress: 0,
@@ -31,7 +33,7 @@ export default class App extends Component {
                   setProgress={this.setProgress}  apiKey={this.apiKey}
                   key="general"
                   pageSize={this.pageSize}
-                  category="general"
+                  category="general" country={country}
                 />
               }
             />
@@ -43,7 +45,7 @@ export default class App extends Component {
                   setProgress={this.setProgress}  apiKey={this.apiKey}
                   key="business"
                   pageSize={this.pageSize}
-                  category="business"
+                  category="business" country={country}
                 />
               }
             />
@@ -55,7 +57,7 @@ export default class App extends Component {
                   setProgress={this.setProgress}  apiKey={this.apiKey}
                   key="entertainment"
                   pageSize={this.pageSize}
-                  category="entertainment"
+                  category="entertainment" country={country}
                 />
               }
             />
@@ -67,7 +69,7 @@ export default class App extends Component {
                   setProgress={this.setProgress}  apiKey={this.apiKey}
                   key="health"
                   pageSize={this.pageSize}
-                  category="health"
+                  category="health" country={country}
                 />
               }
             />
@@ -79,7 +81,7 @@ export default class App extends Component {
                   setProgress={this.setProgress}  apiKey={this.apiKey}
                   key="science"
                   pageSize={this.pageSize}
-                  category="science"
+                  category="science" country={country}
                 />
               }
             />
@@ -91,7 +93,7 @@ export default class App extends Component {
                   setProgress={this.setProgress}  apiKey={this.apiKey}
                   key="sports"
                   pageSize={this.pageSize}
-                  category="sports"
+                  category="sports" country={country}
                 />
               }
             />
@@ -103,7 +105,7 @@ export default class App extends Component {
                   setProgress={this.setProgress}  apiKey={this.apiKey}
                   key="technology"
                   pageSize={this.pageSize}
-                  category="technology"
+                  category="technology" country={country}
                 />
               }
             />
